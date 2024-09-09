@@ -1,5 +1,5 @@
 'use client'
-
+import { useEffect, useState } from 'react'
 import { Fragment } from 'react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {
@@ -10,105 +10,58 @@ import {
   PlusIcon,
 } from '@heroicons/react/20/solid'
 
-const secondaryNavigation = [
-  { name: 'Last 7 days', href: '#', current: true },
-  { name: 'Last 30 days', href: '#', current: false },
-  { name: 'All-time', href: '#', current: false },
-]
-const stats = [
-  { name: 'Revenue', value: '$405,091.00', change: '+4.75%', changeType: 'positive' },
-  { name: 'Bookings', value: '$12,787.00', change: '+54.02%', changeType: 'negative' },
-  { name: 'Tours', value: '$245,988.00', change: '-1.39%', changeType: 'positive' },
-  { name: 'Users', value: '$30,156.00', change: '+10.18%', changeType: 'negative' },
-]
+import { getBookingNumber, getRevenue, getTourNumber, getUserNumber } from '../../../firebase/actions/dashboard-actions'
+
 const statuses = {
   Paid: 'text-green-700 bg-green-50 ring-green-600/20',
   Withdraw: 'text-gray-600 bg-gray-50 ring-gray-500/10',
   Overdue: 'text-red-700 bg-red-50 ring-red-600/10',
 }
+
 const days = [
-  {
-    date: 'Today',
-    dateTime: '2023-03-22',
-    transactions: [
-      {
-        id: 1,
-        invoiceNumber: '00012',
-        href: '#',
-        amount: '$7,600.00 USD',
-        tax: '$500.00',
-        status: 'Paid',
-        client: 'Reform',
-        description: 'Website redesign',
-        icon: ArrowUpCircleIcon,
-      },
-      {
-        id: 2,
-        invoiceNumber: '00011',
-        href: '#',
-        amount: '$10,000.00 USD',
-        status: 'Withdraw',
-        client: 'Tom Cook',
-        description: 'Salary',
-        icon: ArrowDownCircleIcon,
-      },
-      {
-        id: 3,
-        invoiceNumber: '00009',
-        href: '#',
-        amount: '$2,000.00 USD',
-        tax: '$130.00',
-        status: 'Overdue',
-        client: 'Tuple',
-        description: 'Logo design',
-        icon: ArrowPathIcon,
-      },
-    ],
-  },
-  {
-    date: 'Yesterday',
-    dateTime: '2023-03-21',
-    transactions: [
-      {
-        id: 4,
-        invoiceNumber: '00010',
-        href: '#',
-        amount: '$14,000.00 USD',
-        tax: '$900.00',
-        status: 'Paid',
-        client: 'SavvyCal',
-        description: 'Website redesign',
-        icon: ArrowUpCircleIcon,
-      },
-    ],
-  },
+
 ]
+
 const clients = [
-  {
-    id: 1,
-    name: 'Tuple',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/tuple.svg',
-    lastInvoice: { date: 'December 13, 2022', dateTime: '2022-12-13', amount: '$2,000.00', status: 'Overdue' },
-  },
-  {
-    id: 2,
-    name: 'SavvyCal',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/savvycal.svg',
-    lastInvoice: { date: 'January 22, 2023', dateTime: '2023-01-22', amount: '$14,000.00', status: 'Paid' },
-  },
-  {
-    id: 3,
-    name: 'Reform',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/reform.svg',
-    lastInvoice: { date: 'January 23, 2023', dateTime: '2023-01-23', amount: '$7,600.00', status: 'Paid' },
-  },
+
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Dashboard() {
+  const [stats, setStats] = useState([
+    { name: 'Revenue', value: 0, change: '+4.75%', changeType: 'positive' },
+    { name: 'Bookings', value: 0, change: '+54.02%', changeType: 'negative' },
+    { name: 'Tours', value: 0, change: '-1.39%', changeType: 'positive' },
+    { name: 'Users', value: 0, change: '+10.18%', changeType: 'negative' },
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const revenue = await getRevenue();
+      const bookingNumber = await getBookingNumber();
+      const tourNumber = await getTourNumber();
+      const userNumber = await getUserNumber();
+
+      const currency = new Intl.NumberFormat('en-GH', {
+        style: 'currency',
+        currency: 'GHS',
+      }).format(revenue);
+
+      setStats(prevStats => [
+        { ...prevStats[0], value: currency || 0 },
+        { ...prevStats[1], value: bookingNumber || 0 },
+        { ...prevStats[2], value: tourNumber || 0 },
+        { ...prevStats[3], value: userNumber || 0 }
+      ]);
+      console.log(stats);
+    };
+
+    fetchData(); // Call the async function
+  }, []);
+
   return (
     <>
       <main>
@@ -116,16 +69,9 @@ export default function Example() {
           {/* Secondary navigation */}
           <header className="pb-4 pt-6 sm:pb-6">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
-              <h1 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">Cashflow</h1>
-              <div className="order-last flex w-full gap-x-8 text-sm font-semibold leading-6 sm:order-none sm:w-auto sm:border-l sm:border-gray-200 sm:pl-6 sm:leading-7">
-                {secondaryNavigation.map((item) => (
-                  <a key={item.name} href={item.href} className={item.current ? 'text-indigo-600 dark:text-indigo-500' : 'text-gray-700 dark:text-gray-400'}>
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+              <h1 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">Stats</h1>
               <a
-                href="#"
+                href="/new-invoice"
                 className="ml-auto flex items-center gap-x-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <PlusIcon aria-hidden="true" className="-ml-1.5 h-5 w-5" />
@@ -343,5 +289,5 @@ export default function Example() {
         </div>
       </main>
     </>
-  )
+  );
 }

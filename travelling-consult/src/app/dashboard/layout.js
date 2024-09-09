@@ -6,10 +6,10 @@ import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Dashboard({ children }) {
   const navigation = [
-    { name: 'Dasboard', href: '#' },
-    { name: 'Bookings', href: '#' },
-    { name: 'Tours', href: '#' },
-    { name: 'Customers', href: '#' },
+    { name: 'Dasboard', href: '/dashboard' },
+    { name: 'Bookings', href: '/dashboard/bookings' },
+    { name: 'Tours', href: '/dashboard/tours' },
+    { name: 'Users', href: '/dashboard/users' },
   ]
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -25,7 +25,7 @@ export default function Dashboard({ children }) {
             </button>
             <img
               alt="Your Company"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="#"
               className="h-8 w-auto"
             />
           </div>
@@ -45,7 +45,7 @@ export default function Dashboard({ children }) {
               <span className="sr-only">Your profile</span>
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src="#"
                 className="h-8 w-8 rounded-full bg-gray-800"
               />
             </a>
@@ -64,7 +64,7 @@ export default function Dashboard({ children }) {
                   <span className="sr-only">Your Company</span>
                   <img
                     alt=""
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="#"
                     className="h-8 w-auto"
                   />
                 </a>
@@ -84,7 +84,9 @@ export default function Dashboard({ children }) {
           </DialogPanel>
         </Dialog>
       </header>
+      <main className="mt-16">
       {children}
+      </main>
     </>
   );
 }
