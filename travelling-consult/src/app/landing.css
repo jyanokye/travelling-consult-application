@@ -1,0 +1,214 @@
+.landing {
+    padding: 0 55px 32px 55px;
+    min-height: 100dvh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1.5s linear;
+}
+
+.landing .header {
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    align-items: flex-end;
+}
+
+.landing .header .tabs {
+    display: flex;
+    color: #ffffff;
+    width: 300px;
+    justify-content: space-between;
+    cursor: pointer;
+
+    :hover {
+        text-decoration: underline;
+    }
+}
+
+.landing .header .Logo {
+    color:#ffffff;
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large; 
+
+    .slogan {
+        font-size: 14px;
+    }
+}
+
+.landing .header .auth {
+    color: #ffffff;
+    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        border: 1px solid #ffffff;
+        height: 40px;
+        width: 85px;
+        border-radius: 25px;
+    }
+
+}
+
+.landing .header .auth .signup {
+    background-color: #ffffff;
+    color:black;
+
+    &:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.landing .header .auth .login {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+
+    &:hover {
+        background-color: #ffffff;
+        color:black;
+    }
+}
+
+.landing .content {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 72px);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.landing .content .center {
+    font-weight: 900;
+    width: 550px;
+    text-align: center;
+    font-size: 55px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 100px;
+}
+
+.landing .content .center p span {
+    border-radius: 45px;
+    padding: 7px;
+    mix-blend-mode: screen;
+    color: black;
+    background-color: white;
+}
+
+.description {
+    width: 300px;
+    color: white;
+    text-align: right;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    transition: transform 1.5s ease-in-out, p 1.5s ease-in-out;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    p {
+        font-size: 14px;
+    }
+}
+
+.before-center {
+    margin-top: 70px;
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    justify-content: space-between; 
+}
+
+.arrowLeft {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .arrowRight {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .after-center {
+    margin-top: 100px;
+    display: flex;
+    align-self: flex-start;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .after-center-left {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    color: #ffffff;
+
+    h2 {
+        font-size: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 700;
+    }
+
+    p {
+        padding: 5px 15px 5px 15px;
+        border: 1px solid #ffffff;
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 14px;
+    }
+  }
+
+  .facilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .after-center-right {
+    color: #ffffff;
+    align-self: flex-end;
+    margin-left: auto;
+    text-align: right;
+
+    a {
+        padding: 5px 15px 5px 15px;
+        border: 1px solid #ffffff;
+        color:black;
+        background-color: #ffffff;
+        border-radius: 25px;
+    }
+
+    p {
+        margin-top: 12px;
+    }
+  }
