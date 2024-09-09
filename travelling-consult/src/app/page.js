@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import { useState, useEffect } from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaX } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaBars, FaRegWindowClose  } from 'react-icons/fa';
 import { RiArrowRightUpLine } from "react-icons/ri";
 import './landing.css';
 
@@ -53,12 +53,23 @@ export default function Home() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <div className="landing" style={{ backgroundImage: `url(${slides[currentIndex].image})` }}>
       <div className="header">
-        <div className="Logo">
-          <p>oExplore!</p>
-          <p className="slogan">Tour Ghana with us</p>
+        <div className="header-left">
+          <div className="menu" onClick={toggleSidebar}>
+            <FaBars />
+          </div>
+          <div className="Logo">
+            <p>oExplore!</p>
+            <p className="slogan">Tour Ghana with us</p>
+          </div>
         </div>
         <div className="tabs">
           <a>Tours</a>
@@ -69,6 +80,23 @@ export default function Home() {
         <div className="auth">
           <button className="login">Login</button>
           <button className="signup">Sign Up</button>
+        </div>
+      </div>
+      <div className={`sidebar ${isSidebarVisible ? 'visible' : ''}`}>
+        <div className="top">
+          <div className="Logo">
+            <p>oExplore!</p>
+            <p className="slogan">Tour Ghana with us</p>
+          </div>
+          <FaRegWindowClose onClick={toggleSidebar}/>
+        </div>
+        <div className="items">
+          <ul>
+            <li>Tours</li>
+            <li>About Us</li>
+            <li>Gallery</li>
+            <li>Contact</li>
+          </ul>
         </div>
       </div>
       <div className="content">

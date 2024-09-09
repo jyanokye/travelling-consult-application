@@ -26,6 +26,20 @@
     }
 }
 
+.landing .header .header-left {
+    display: flex;
+    color: #ffffff;
+    align-items: center;
+    gap: 20px;
+
+    .menu {
+        @media (min-width: 772px) {
+            display: none;
+        }
+    }
+}
+
+
 .landing .header .tabs {
     display: flex;
     color: #ffffff;
@@ -38,6 +52,9 @@
     }
 
     @media (max-width: 480px) {
+        display: none;
+    }
+    @media (max-width: 768px) {
         display: none;
     }
 }
@@ -104,12 +121,59 @@
     }
 }
 
+.landing .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: #ffffff;
+    height: 100dvh;
+    z-index: 1000;
+    padding: 24px;
+    
+    .top {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.landing .sidebar.visible {
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.landing .sidebar li {
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: aquamarine;
+    }
+}
+
+.landing .sidebar .Logo {
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+    margin-bottom: 24px;
+
+    .slogan {
+        font-size: 14px;
+    }
+}
+
 .landing .content {
     display: flex;
     flex-direction: column;
     min-height: calc(100dvh - 72px);
     justify-content: flex-start;
     align-items: center;
+
+    @media (max-width: 480px) {
+        min-height: calc(100dvh - 56px);
+    }
 }
 
 .landing .content .center {
@@ -124,6 +188,12 @@
     @media (max-width: 480px) {
         width: 100%;
         font-size: 45px;
+    }
+
+    @media (max-width: 720px) {
+        width: 100%;
+        font-size: 45px;
+        margin-top: 20px;
     }
 }
 
@@ -217,6 +287,11 @@
         flex-direction:column-reverse;
         margin-top: 70px;
     }
+
+    @media (max-width: 720px) {
+        flex-direction:column-reverse;
+        margin-top: 50px;
+    }
   }
   .after-center-left {
     display: flex;
@@ -267,6 +342,12 @@
     @media (max-width: 480px) {
         text-align: center;
     }
+
+    @media (max-width: 720px) {
+        text-align: center;
+    }
+
+
     a {
         padding: 5px 15px 5px 15px;
         border: 1px solid #ffffff;
