@@ -1,101 +1,145 @@
+'use client';
 import Image from "next/image";
+import { useState, useEffect } from 'react';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaBars, FaRegWindowClose  } from 'react-icons/fa';
+import { RiArrowRightUpLine } from "react-icons/ri";
+import './landing.css';
+
+const slides = [
+  {
+    image: '/images/Nzulezu.webp',
+    heading: 'Nzulezu',
+    text: 'Nzulezu is renowned for its unique stilted architecture, as the entire village is built over the water on Lake Tadane, creating a breathtaking and culturally rich experience.'
+  },
+  {
+    image: '/images/mole.jpg',
+    heading: 'Mole National Park',
+    text: 'Mole National Park offers an incredible wildlife experience, where visitors can see elephants, antelopes, and other animals up close during guided walking safaris in their natural habitat.'
+  },
+  {
+    image: '/images/bui.jpg',
+    heading: 'Bui National Park',
+    text: 'Bui National Park is famous for its stunning scenery along the Black Volta River, where visitors can witness hippos in their natural habitat while also exploring a rich variety of wildlife and bird species.'
+  },
+  {
+    image: '/images/elmina.jpg',
+    heading: 'Elmina Castle',
+    text: 'Elmina Castle, the oldest European building in sub-Saharan Africa, holds a haunting yet captivating history as a key fortress in the transatlantic slave trade, where thousands of enslaved Africans were imprisoned before being shipped across the Atlantic.'
+  },
+  {
+    image: '/images/lara-banga.jpg',
+    heading: 'Larabanga Mosque',
+    text: 'Larabanga Mosque, one of the oldest mosques in West Africa, is a striking example of Sudanese-style architecture and holds deep historical and spiritual significance, dating back to the 15th century.'
+  },
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 20000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+  };
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
+  return (
+    <div className="landing" style={{ backgroundImage: `url(${slides[currentIndex].image})` }}>
+      <div className="header">
+        <div className="header-left">
+          <div className="menu" onClick={toggleSidebar}>
+            <FaBars />
+          </div>
+          <div className="Logo">
+            <p>oExplore!</p>
+            <p className="slogan">Tour Ghana with us</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="tabs">
+          <a>Tours</a>
+          <a>About Us</a>
+          <a>Gallery</a>
+          <a>Contact</a>
+        </div>
+        <div className="auth">
+          <button className="login">Login</button>
+          <button className="signup">Sign Up</button>
+        </div>
+      </div>
+      <div className={`sidebar ${isSidebarVisible ? 'visible' : ''}`}>
+        <div className="top">
+          <div className="Logo">
+            <p>oExplore!</p>
+            <p className="slogan">Tour Ghana with us</p>
+          </div>
+          <FaRegWindowClose onClick={toggleSidebar}/>
+        </div>
+        <div className="items">
+          <ul>
+            <li>Tours</li>
+            <li>About Us</li>
+            <li>Gallery</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+      </div>
+      <div className="content">
+        <div className="before-center">
+          <div className="description">
+            <h2>{slides[currentIndex].heading}</h2>
+            <p>{slides[currentIndex].text}</p>
+          </div>
+          <div className="socials">
+            <FaFacebook />
+            <FaInstagram />
+            <FaTwitter />
+            <FaLinkedin />
+          </div>
+        </div>
+        <div className="center">
+          <p>Crafting <span>Memories</span> Not <span>Just</span> Trips</p>
+        </div>
+        <div className="after-center">
+          <div className="after-center-left">
+            <h2>The facilities we provide:</h2>
+            <div className="facilities">
+              <p>Tour guide</p>
+              <p>Travel Packages</p>
+              <p>Accomodation</p>
+              <p>Transportation</p>
+              <p>Food</p>
+              <p>Insurance</p>
+              <p>Online Ordering</p>
+            </div> 
+          </div>
+          <div className="after-center-right">
+            <a href="#">Consultation &#8599;</a>
+            <p>Speak to a member of our team to help you plan an awesome and fun-filled trip</p>
+          </div>
+        </div>
+      </div>
+      <button className="arrowLeft" onClick={prevSlide}>
+        &#8592;
+      </button>
+      <button className="arrowRight" onClick={nextSlide}>
+        &#8594;
+      </button>
     </div>
   );
 }
