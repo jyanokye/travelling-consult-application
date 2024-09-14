@@ -16,6 +16,8 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider, facebookProvider } from '../../firebase';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
 import  GoogleIcon  from './GoogleIcon';
 
@@ -44,6 +46,24 @@ function ColorSchemeToggle(props) {
 }
 
 const customTheme = extendTheme({ defaultColorScheme: 'dark' });
+const handleGoogleSignIn = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+    router.push('/home');
+  } catch (err) {
+    setError('Failed to sign in with Google. Please try again.');
+  }
+};
+const handleEmailSignIn = async (e) => {
+  e.preventDefault();
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    router.push('/home');
+  } catch (err) {
+    setError('Invalid email or password');
+  }
+};
+
 
 export  default function JoySignInSideTemplate() {
   return (
@@ -69,7 +89,7 @@ export  default function JoySignInSideTemplate() {
           backdropFilter: 'blur(12px)',
           backgroundColor: 'rgba(255 255 255 / 0.2)',
           [theme.getColorSchemeSelector('dark')]: {
-            backgroundColor: 'rgba(19 19 24 / 0.4)',
+            backgroundColor: 'rgba(19 19 24 / 1)',
           },
         })}
       >
@@ -123,8 +143,8 @@ export  default function JoySignInSideTemplate() {
                   Sign in
                 </Typography>
                 <Typography level="body-sm">
-                  New to company?{' '}
-                  <Link href="#replace-with-a-link" level="title-sm">
+                  New to user?{' '}
+                  <Link href="/sign-up" level="title-sm">
                     Sign up!
                   </Link>
                 </Typography>
@@ -134,6 +154,7 @@ export  default function JoySignInSideTemplate() {
                 color="neutral"
                 fullWidth
                 startDecorator={<GoogleIcon />}
+                onClick={handleGoogleSignIn}
               >
                 Continue with Google
               </Button>

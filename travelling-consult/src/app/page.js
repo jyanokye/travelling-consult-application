@@ -78,8 +78,8 @@ export default function Home() {
           <a>Contact</a>
         </div>
         <div className="auth">
-          <button className="login">Login</button>
-          <button className="signup">Sign Up</button>
+          <a href="/sign-in"><button className="login">Login</button></a>
+          <a href="/sign-up"><button className="signup">Sign Up</button></a>
         </div>
       </div>
       <div className={`sidebar ${isSidebarVisible ? 'visible' : ''}`}>
