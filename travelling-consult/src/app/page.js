@@ -1,37 +1,30 @@
 'use client';
-import Image from "next/image";
 import { useState, useEffect } from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaBars, FaRegWindowClose  } from 'react-icons/fa';
-import { RiArrowRightUpLine } from "react-icons/ri";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaBars, FaRegWindowClose } from 'react-icons/fa';
 import './landing.css';
 
 const slides = [
   {
-    image: '/images/Nzulezu.webp',
-    heading: 'Nzulezu',
-    text: 'Nzulezu is renowned for its unique stilted architecture, as the entire village is built over the water on Lake Tadane, creating a breathtaking and culturally rich experience.'
+    image: '/images/Accra.jpg', 
+    heading: 'Fly Locally in Ghana',
+    text: 'Travel between Accra and Kumasi effortlessly with our reliable and convenient local flight services. Enjoy a seamless journey within Ghana with our top-notch service.'
   },
   {
-    image: '/images/mole.jpg',
-    heading: 'Mole National Park',
-    text: 'Mole National Park offers an incredible wildlife experience, where visitors can see elephants, antelopes, and other animals up close during guided walking safaris in their natural habitat.'
+    image: '/images/Germany1.jpg', 
+    heading: 'Discover Germany',
+    text: 'Experience the rich culture and history of Germany. Our flights offer you a chance to explore cities like Berlin, Munich, and Hamburg with ease and comfort.'
   },
   {
-    image: '/images/bui.jpg',
-    heading: 'Bui National Park',
-    text: 'Bui National Park is famous for its stunning scenery along the Black Volta River, where visitors can witness hippos in their natural habitat while also exploring a rich variety of wildlife and bird species.'
+    image: '/images/USA2.jpg', 
+    heading: 'Explore the USA',
+    text: 'From the bustling streets of New York City to the sunny beaches of California, our flights take you to top destinations across the USA. Enjoy a wide range of travel options and services.'
   },
   {
-    image: '/images/elmina.jpg',
-    heading: 'Elmina Castle',
-    text: 'Elmina Castle, the oldest European building in sub-Saharan Africa, holds a haunting yet captivating history as a key fortress in the transatlantic slave trade, where thousands of enslaved Africans were imprisoned before being shipped across the Atlantic.'
+    image: '/images/UK3.jpg', 
+    heading: 'Visit the UK',
+    text: 'Discover the charm of the United Kingdom with our flights to London, Edinburgh, and more. Enjoy a comfortable journey and explore historic sites, modern attractions, and beautiful landscapes.'
   },
-  {
-    image: '/images/lara-banga.jpg',
-    heading: 'Larabanga Mosque',
-    text: 'Larabanga Mosque, one of the oldest mosques in West Africa, is a striking example of Sudanese-style architecture and holds deep historical and spiritual significance, dating back to the 15th century.'
-  },
-]
+];
 
 export default function Home() {
 
@@ -67,15 +60,15 @@ export default function Home() {
             <FaBars />
           </div>
           <div className="Logo">
-            <p>oExplore!</p>
-            <p className="slogan">Tour Ghana with us</p>
+            <p>ErnestLinks!</p> {/* Update company name */}
+            <p className="slogan">Book Your Next Flight</p>
           </div>
         </div>
         <div className="tabs">
-          <a>Tours</a>
-          <a>About Us</a>
-          <a>Gallery</a>
-          <a>Contact</a>
+          <a href="#">Book Flight</a>
+          <a href="#">Manage Booking</a>
+          <a href="#">Destinations</a>
+          <a href="#">Contact Us</a>
         </div>
         <div className="auth">
           <a href="/sign-in"><button className="login">Login</button></a>
@@ -85,17 +78,17 @@ export default function Home() {
       <div className={`sidebar ${isSidebarVisible ? 'visible' : ''}`}>
         <div className="top">
           <div className="Logo">
-            <p>oExplore!</p>
-            <p className="slogan">Tour Ghana with us</p>
+            <p>FlyHigh!</p> {/* Update company name */}
+            <p className="slogan">Book Your Next Flight</p>
           </div>
           <FaRegWindowClose onClick={toggleSidebar}/>
         </div>
         <div className="items">
           <ul>
-            <li>Tours</li>
-            <li>About Us</li>
-            <li>Gallery</li>
-            <li>Contact</li>
+            <li>Book Flight</li>
+            <li>Manage Booking</li>
+            <li>Destinations</li>
+            <li>Contact Us</li>
           </ul>
         </div>
       </div>
@@ -113,24 +106,24 @@ export default function Home() {
           </div>
         </div>
         <div className="center">
-          <p>Crafting <span>Memories</span> Not <span>Just</span> Trips</p>
+          <p>Providing <span>Seamless</span> Flight <span>Experiences</span></p>
         </div>
         <div className="after-center">
           <div className="after-center-left">
-            <h2>The facilities we provide:</h2>
+            <h2>Our Services:</h2>
             <div className="facilities">
-              <p>Tour guide</p>
-              <p>Travel Packages</p>
-              <p>Accomodation</p>
-              <p>Transportation</p>
-              <p>Food</p>
-              <p>Insurance</p>
-              <p>Online Ordering</p>
+              <p>Flight Booking</p>
+              <p>Flight Management</p>
+              <p>Customer Support</p>
+              <p>Special Offers</p>
+              <p>Travel Insurance</p>
+              <p>Travel Assistance</p>
+              <p>Online Check-In</p>
             </div> 
           </div>
           <div className="after-center-right">
-            <a href="#">Consultation &#8599;</a>
-            <p>Speak to a member of our team to help you plan an awesome and fun-filled trip</p>
+            <a href="/sign-up">Book a Flight &#8599;</a>
+            <p>Find the perfect flight for your next journey with our easy-to-use booking system.</p>
           </div>
         </div>
       </div>

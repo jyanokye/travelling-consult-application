@@ -23,7 +23,7 @@ function SidebarDemo() {
   const links = [
     {
       label: "Dashboard",
-      href: "#",
+      href: "/home",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -44,7 +44,7 @@ function SidebarDemo() {
     },
     {
       label: "Logout",
-      href: "#",
+      href: "/sign-in",
       icon: (
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -80,14 +80,15 @@ function SidebarDemo() {
 export const Logo = () => {
   return (
     (<Link
-      href="#"
-      className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20">
+      href="/"
+      className="font-bold flex space-x-2 items-center text-sm text-custom_blue py-1 relative z-20">
       <div
-        className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+        className="h-5 w-6 bg-custom_blue dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-black dark:text-white whitespace-pre">
+        className="font-bold text-custom_black text-lg dark:text-white whitespace-pre">
+      
        ErnestLinks
       </motion.span>
     </Link>)
@@ -105,12 +106,12 @@ export const LogoIcon = () => {
 };
 const Dashboard = () => {
   return (
-    (<div className="flex flex-1 overflow-y-auto">
+    (<div className=" flex-1 overflow-y-auto w-screen">
      
       <div
-        className="flex flex-col">
+        className="flex flex-col ">
        <div
-  className="bg-white h-200 rounded-tl-2xl  relative"
+  className="bg-white h-60 rounded-tl-2xl  relative"
   style={{
     backgroundImage: `url('/images/Airport.jpg')`,
     backgroundSize: 'cover', // This ensures the image covers the entire div
@@ -118,7 +119,6 @@ const Dashboard = () => {
     backgroundRepeat: 'no-repeat' // This prevents repeating the image
   }}
 >
-    <div><FlightSearchForm/></div>
  
 </div>
           

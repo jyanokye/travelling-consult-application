@@ -60,7 +60,7 @@
 }
 
 .landing .header .Logo {
-    color:#ffffff;
+    color: #d6d4d4;;
     font-weight: 700;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: xx-large; 
@@ -78,7 +78,7 @@
 }
 
 .landing .header .auth {
-    color: #ffffff;
+    color: #2a2929;
     gap: 15px;
     display: flex;
     justify-content: space-between;
@@ -108,7 +108,7 @@
 }
 
 .landing .header .auth .login {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(17, 16, 16, 0.6);
     color: #ffffff;
 
     &:hover {
@@ -215,7 +215,7 @@
     color: white;
     text-align: right;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(59, 59, 59, 0.8);
     border-radius: 15px;
     transition: transform 1.5s ease-in-out, p 1.5s ease-in-out;
 
@@ -246,7 +246,7 @@
     font-size: 20px;
     padding: 7px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(70, 68, 68, 0.7);
     justify-content: space-between; 
 }
 
@@ -367,3 +367,24 @@
         }
     }
   }
+  
+  
+  /* Add a dark shade overlay */
+  .landing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark shade (0.5 opacity) */
+    z-index: 1;
+  }
+  
+  .header, .content, .after-center {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+  }
+  
+  
+  

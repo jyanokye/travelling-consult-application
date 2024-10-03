@@ -1,5 +1,6 @@
 'use client'
 import * as React from 'react';
+import { useState } from 'react';
 import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -46,22 +47,16 @@ function ColorSchemeToggle(props) {
 }
 
 const customTheme = extendTheme({ defaultColorScheme: 'dark' });
+
 const handleGoogleSignIn = async () => {
-  try {
     await signInWithPopup(auth, googleProvider);
     router.push('/home');
-  } catch (err) {
     setError('Failed to sign in with Google. Please try again.');
-  }
 };
 const handleEmailSignIn = async (e) => {
-  e.preventDefault();
-  try {
     await signInWithEmailAndPassword(auth, email, password);
     router.push('/home');
-  } catch (err) {
     setError('Invalid email or password');
-  }
 };
 
 
@@ -170,16 +165,6 @@ export  default function JoySignInSideTemplate() {
             </Divider>
             <Stack sx={{ gap: 4, mt: 2 }}>
               <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formElements = event.currentTarget.elements;
-                  const data = {
-                    email: formElements.email.value,
-                    password: formElements.password.value,
-                    persistent: formElements.persistent.checked,
-                  };
-                  alert(JSON.stringify(data, null, 2));
-                }}
               >
                 <FormControl required>
                   <FormLabel>Email</FormLabel>
@@ -202,9 +187,12 @@ export  default function JoySignInSideTemplate() {
                       Forgot your password?
                     </Link>
                   </Box>
+
+                  <Link href="/home">
                   <Button type="submit" fullWidth>
                     Sign in
                   </Button>
+                  </Link>
                 </Stack>
               </form>
             </Stack>
